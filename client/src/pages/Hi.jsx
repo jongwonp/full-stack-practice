@@ -20,7 +20,7 @@ function Hi() {
   return (
     <>
       <div>{result?.abc}</div>
-      <form action="http://localhost:3000/api/regist" method="POST">
+      <form action="http://localhost:3000/api/test" method="POST">
         <input name="title"></input>
         <input name="content"></input>
         <button type="submit">submit</button>
