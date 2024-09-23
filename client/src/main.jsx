@@ -3,8 +3,9 @@ import { createRoot } from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Root from "./Root.jsx";
 import ErrorPage from "./pages/ErrorPage.jsx";
-import Hi from "./pages/Hi.jsx";
+import Write from "./pages/Write.jsx";
 import Home from "./pages/Home.jsx";
+import List, { loader } from "./pages/List.jsx";
 
 const router = createBrowserRouter([
   {
@@ -17,8 +18,13 @@ const router = createBrowserRouter([
         element: <Home />,
       },
       {
-        path: "hi",
-        element: <Hi />,
+        path: "/write",
+        element: <Write />,
+      },
+      {
+        path: "/list",
+        element: <List />,
+        loader,
       },
     ],
   },

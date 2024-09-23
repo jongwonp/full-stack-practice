@@ -31,16 +31,27 @@ app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "../client/dist/index.html"));
 });
 
-app.get("/api/hi", (req, res) => {
-  res.json({ abc: "hi" });
+app.post("/api/test", async (req, res) => {
+  try {
+    if (req.body.title == "" || req.body.content == "") {
+      res.send("Please enter the content.");
+    } else {
+      await db.collection("post").insertOne({
+        title: req.body.title,
+        content: req.body.content,
+      });
+      res.redirect("/");
+    }
+  } catch (e) {
+    console.log(e);
+    res.status(500).send("Server Error");
+  }
 });
 
-app.post("/api/test", async (req, res) => {
-  await db.collection("post").insertOne({
-    title: req.body.title,
-    content: req.body.content,
-  });
-  res.redirect("/");
+app.get("/api/list", async (req, res) => {
+  const data = await db.collection("post").find().toArray();
+  console.log(data);
+  res.json(data);
 });
 
 app.get("*", (req, res) => {
