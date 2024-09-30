@@ -5,7 +5,7 @@ import Root from "./Root.jsx";
 import ErrorPage from "./pages/ErrorPage.jsx";
 import Write from "./pages/Write.jsx";
 import Home from "./pages/Home.jsx";
-import List, { loader } from "./pages/List.jsx";
+import List, { listLoader } from "./pages/List.jsx";
 
 const router = createBrowserRouter([
   {
@@ -24,7 +24,7 @@ const router = createBrowserRouter([
       {
         path: "/list",
         element: <List />,
-        loader,
+        loader: listLoader,
       },
     ],
   },

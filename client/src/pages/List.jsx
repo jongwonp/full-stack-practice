@@ -5,12 +5,14 @@ export default function List() {
   console.log(data);
   return (
     <>
-      <div>asd</div>
+      {data.map((v) => {
+        return <div>{v.title}</div>;
+      })}
     </>
   );
 }
 
-export const loader = async () => {
+export const listLoader = async () => {
   const response = await fetch("http://localhost:3000/api/list");
   if (!response.ok) {
     throw new Error("failed to fetch");
