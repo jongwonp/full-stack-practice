@@ -6,6 +6,7 @@ import ErrorPage from "./pages/ErrorPage.jsx";
 import Write from "./pages/Write.jsx";
 import Home from "./pages/Home.jsx";
 import List, { listLoader } from "./pages/List.jsx";
+import Detail, { detailLoader } from "./pages/Detail.jsx";
 
 const router = createBrowserRouter([
   {
@@ -25,6 +26,11 @@ const router = createBrowserRouter([
         path: "/list",
         element: <List />,
         loader: listLoader,
+      },
+      {
+        path: "/detail/:id",
+        element: <Detail />,
+        loader: detailLoader,
       },
     ],
   },

@@ -10,7 +10,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, "../client/dist")));
 
-const { MongoClient } = require("mongodb");
+const { MongoClient, ObjectId } = require("mongodb");
 
 let db;
 const url = process.env.DB_URL;
@@ -50,6 +50,13 @@ app.post("/api/test", async (req, res) => {
 
 app.get("/api/list", async (req, res) => {
   const data = await db.collection("post").find().toArray();
+  res.json(data);
+});
+
+app.get("/api/detail/:id", async (req, res) => {
+  const data = await db
+    .collection("post")
+    .findOne({ _id: new ObjectId(req.params.id) });
   console.log(data);
   res.json(data);
 });

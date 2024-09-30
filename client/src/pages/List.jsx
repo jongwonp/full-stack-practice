@@ -1,13 +1,20 @@
-import { useLoaderData } from "react-router-dom";
+import { Link, useLoaderData } from "react-router-dom";
 
 export default function List() {
   const data = useLoaderData();
-  console.log(data);
   return (
     <>
-      {data.map((v) => {
-        return <div>{v.title}</div>;
-      })}
+      <div>
+        {data.map((v) => {
+          return (
+            <div>
+              <Link to={`/detail/${v._id}`}>
+                {v.title} {v._id}
+              </Link>
+            </div>
+          );
+        })}
+      </div>
     </>
   );
 }
